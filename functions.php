@@ -23,9 +23,9 @@ function mytheme_add_admin() {
 
     global $themename, $shortname, $options;
 
-    if ( $_GET['page'] == basename(__FILE__) ) {
+    if ( isset($_GET['page']) && $_GET['page'] == basename(__FILE__) ) {
     
-        if ( 'save' == $_REQUEST['action'] ) {
+        if ( isset($_REQUEST['action']) && 'save' == $_REQUEST['action'] ) {
 
                 foreach ($options as $value) {
                     update_option( $value['id'], $_REQUEST[ $value['id'] ] ); }
@@ -47,7 +47,7 @@ function mytheme_admin() {
 
     global $themename, $shortname, $options;
 
-    if ( $_REQUEST['saved'] ) echo '<div id="message" class="updated fade"><p><strong>'.$themename.' settings saved.</strong></p></div>';
+    if ( isset($_REQUEST['saved']) ) echo '<div id="message" class="updated fade"><p><strong>'.$themename.' settings saved.</strong></p></div>';
     
 ?>
 <div class="wrap">
@@ -85,7 +85,7 @@ function mytheme_admin() {
         
         <tr>
             <td valign="top"><?php echo $value['name']; ?> &nbsp;</td>
-            <td><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php if ( get_settings( $value['id'] ) != "") { echo get_settings( $value['id'] ); } else { echo $value['std']; } ?>" /><br />
+            <td><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php if ( get_option( $value['id'] ) != "") { echo get_option( $value['id'] ); } else { echo $value['std']; } ?>" /><br />
 			<span class="description"><?php echo $value['desc']; ?></span></td>
         </tr>
 
@@ -97,7 +97,7 @@ function mytheme_admin() {
         
         <tr>
             <td valign="top"><?php echo $value['name']; ?> &nbsp;</td>
-            <td><textarea name="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" cols="60" rows="5"><?php if ( get_settings( $value['id'] ) != "") { echo stripslashes( get_settings( $value['id'] ) ); } else { echo $value['std']; } ?></textarea><br />
+            <td><textarea name="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" cols="60" rows="5"><?php if ( get_option( $value['id'] ) != "") { echo stripslashes( get_option( $value['id'] ) ); } else { echo $value['std']; } ?></textarea><br />
 			<span class="description"><?php echo $value['desc']; ?></span></td>
         </tr>
 
@@ -108,7 +108,7 @@ function mytheme_admin() {
 		?>
         <tr>
             <td valign="top"><?php echo $value['name']; ?> &nbsp;</td>
-            <td><select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>"><?php foreach ($value['options'] as $option) { ?><option<?php if ( get_settings( $value['id'] ) == $option) { echo ' selected="selected"'; } elseif ($option == $value['std']) { echo ' selected="selected"'; } ?>><?php echo $option; ?></option><?php } ?></select><br />
+            <td><select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>"><?php foreach ($value['options'] as $option) { ?><option<?php if ( get_option( $value['id'] ) == $option) { echo ' selected="selected"'; } elseif ($option == $value['std']) { echo ' selected="selected"'; } ?>><?php echo $option; ?></option><?php } ?></select><br />
 			<span class="description"><?php echo $value['desc']; ?></span></td>
        </tr>
 
@@ -119,7 +119,7 @@ function mytheme_admin() {
 		?>
             <tr>
             	<td valign="top"><?php echo $value['name']; ?> &nbsp;</td>
-                <td><?php if(get_settings($value['id'])){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                <td><?php if(get_option($value['id'])){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
                         <input type="checkbox" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" value="true" <?php echo $checked; ?> /><br />
 						<span class="description"><?php echo $value['desc']; ?></span>
                         </td>
@@ -380,12 +380,14 @@ function or_above_footer() {
 }
 
 function or_footer() {
-	global $options;
+	/*global $options;
 	foreach ($options as $value) {
 	    if (get_option( $value['id'] ) === FALSE) { $$value['id'] = $value['std']; }
 	    else { $$value['id'] = get_option( $value['id'] ); }
-	}
-
+	}*/
+	
+	$or_footer_code = get_option('or_footer_code');
+	
 	if ($or_footer_code) {
 		$footer = stripslashes( $or_footer_code );
 	} else { 
