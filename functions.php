@@ -222,34 +222,15 @@ function or_post_title() {
 function or_postmeta() {
 	global $id;
 	
-	if (is_single()) {
-		$postmeta = '<p class="postmetadata">';
-		$postmeta .= get_the_time('F jS, Y');
-		if ( comments_open() ) {
-			 $postcommentnumber = get_comments_number();
-			if ($postcommentnumber > '1') {
-				$postmeta .= ' | <a href="' . get_permalink() . '#comments">';
-				$postmeta .= get_comments_number() . __(' Comments &raquo;') . '</a>';
-			} elseif ($postcommentnumber == '1') {
-				$postmeta .= ' | <a href="' . get_permalink() . '#comments">';
-				$postmeta .= get_comments_number() . __(' Comment &raquo;') . '</a>';
-			} elseif ($postcommentnumber == '0') {
-				$postmeta .= ' | <a href="' . get_permalink() . '#respond">';
-				$postmeta .= __('Leave a comment &raquo;') . '</a>';
-			}
-		}
-		if (current_user_can('edit_posts')) {
-        	$postmeta .= ' | <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $id .'">';
-    		$postmeta .= __('Edit') . '</a>';
-    	}
-		$postmeta .= '</p>';
-	} else {
-		$postmeta = '<p class="postmetadata">';
-		$postmeta .= get_the_time('F jS, Y');
-		$postmeta .= ' by ';
-		$postmeta .= get_the_author();
-		$postmeta .= '</p>';
-	}
+	$postmeta = '<p class="postmetadata">Posted on ';
+	$postmeta .= get_the_time('F jS, Y');
+	$postmeta .= ' by ';
+	$postmeta .= get_the_author();
+	if (current_user_can('edit_posts')) {
+       	$postmeta .= ' | <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $id .'">';
+   		$postmeta .= __('Edit') . '</a>';
+   	}
+	$postmeta .= '</p>';
 	echo apply_filters( 'or_postmeta', $postmeta );
 }
 
@@ -271,28 +252,20 @@ function or_postfooter() {
 	global $id;
 	
 	if (is_single()) {
-		$postfooter = '<p class="postfooter">Posted in ';
-		$postfooter .= get_the_category_list(', ');
-		$postfooter .= '</p>';
+		// Do Not Display
 	} else {
-		$postfooter = '<p class="postfooter">Posted in ';
-		$postfooter .= get_the_category_list(', ');
-		$postfooter .= get_the_tag_list(' | Tags: ', ', ', '');
-		if (current_user_can('edit_posts')) {
-        	$postfooter .= ' | <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $id .'">';
-    		$postfooter .= __('Edit') . '</a>';
-    	}
+		$postfooter = '<p class="postfooter clrfix">';
 		if ( comments_open() ) {
 			 $postcommentnumber = get_comments_number();
 			if ($postcommentnumber > '1') {
-				$postfooter .= ' | <a href="' . get_permalink() . '#comments">';
-				$postfooter .= get_comments_number() . __(' Comments &raquo;') . '</a>';
+				$postfooter .= '<a href="' . get_permalink() . '#comments" class="commentnum">';
+				$postfooter .= get_comments_number() . __(' Comments') . '</a>';
 			} elseif ($postcommentnumber == '1') {
-				$postfooter .= ' | <a href="' . get_permalink() . '#comments">';
-				$postfooter .= get_comments_number() . __(' Comment &raquo;') . '</a>';
+				$postfooter .= '<a href="' . get_permalink() . '#comments" class="commentnum">';
+				$postfooter .= get_comments_number() . __(' Comment') . '</a>';
 			} elseif ($postcommentnumber == '0') {
-				$postfooter .= ' | <a href="' . get_permalink() . '#respond">';
-				$postfooter .= __('Leave a comment &raquo;') . '</a>';
+				$postfooter .= '<a href="' . get_permalink() . '#respond" class="commentnum">';
+				$postfooter .= __('Leave a comment') . '</a>';
 			}
 		}
 		$postfooter .= '</p>';
@@ -380,12 +353,6 @@ function or_above_footer() {
 }
 
 function or_footer() {
-	/*global $options;
-	foreach ($options as $value) {
-	    if (get_option( $value['id'] ) === FALSE) { $$value['id'] = $value['std']; }
-	    else { $$value['id'] = get_option( $value['id'] ); }
-	}*/
-	
 	$or_footer_code = get_option('or_footer_code');
 	
 	if ($or_footer_code) {

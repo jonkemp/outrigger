@@ -2,7 +2,7 @@
 Theme Name: Outrigger
 Theme URI: http://kempwire.com/outrigger/
 Description: Outrigger is a small WordPress theme framework, designed for use with child themes. Outrigger uses a basic 2 column theme derived from the WordPress Default theme.
-Version: 1.1.7
+Version: 1.2
 Author: Jonathan Kemp
 Author URI: http://kempwire.com/
 Tags: two-columns, right-sidebar, fixed-width, theme-options, threaded-comments
@@ -44,9 +44,9 @@ pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
 body {background:#333; color:#333;}
 p {margin-bottom:1em;}
-a:link, a:visited { color: #222;}
+a:link, a:visited { color: #555;}
 a:hover { color: #999;}
-a:active { color: #222;}
+a:active { color: #555;}
 
 img.centered, img.aligncenter {display: block; margin-left: auto; margin-right: auto; padding:1px; border:1px solid #B7B7B7;}
 img.alignleft {float: left; margin-right: 1em; margin-bottom: 1em; padding:1px; border:1px solid #B7B7B7;}
@@ -58,7 +58,7 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 
 #doc {/*margin:0 auto; width:974px;*/ background:#FFF; text-align:center;}
 
-#hd {background:#06C; color:#FFF; margin:0 0 2em; padding:1em 0; text-align:left;}
+#hd {background:#06C; border-bottom:5px solid #B0B0B0; color:#FFF; margin:0 0 1.7em; padding:1em 0; text-align:left;}
 #headerimg {margin:0 auto; width:974px;}
 #hd .description {margin-bottom:1em;}
 #hd a:link, #hd a:visited {color: #EEE; text-decoration:none;}
@@ -68,6 +68,11 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 #bd {margin:0 auto 1em; width:974px;}
 
 #content {float:left; margin-right:36px; text-align:left; width:688px;}
+#content h2 {margin-bottom:0.3em;}
+#content h2 a {text-decoration:none;}
+#content h2 a:link, #content h2 a:visited {text-decoration:none;}
+#content h2 a:hover {border-bottom:1px solid #999;}
+#content h2 a:active {text-decoration:none;}
 #content .navigation, #content h3 {margin-bottom:1em;}
 #content .entry, #content #searchform {margin-top:1em;}
 #content .entry h3 {margin-bottom:0;}
@@ -76,13 +81,28 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 #content .entry ul ul, #content .entry ol ol {margin-bottom:0; margin-left:1em;}
 #content .entry ul li {list-style-type: disc;}
 #content .entry ol li {list-style-type: decimal;}
+.postmetadata {font-size:93%;}
 #content .post, #content .page {border-bottom:1px solid #000; color:#444; margin-bottom:1em;}
-#content .post.sticky {background-color:#FFC; border-bottom:none; padding:1em;}
-#content .post.sticky a:link, #content .post.sticky a:visited { color: #333;}
+/*#content .post.sticky {background-color:#FFC; border-bottom:none; padding:1em;}*/
+#content .post.sticky {border:1px solid #999; margin-bottom:1.5em; padding:1em;}
+/*#content .post.sticky a:link, #content .post.sticky a:visited { color: #333;}
 #content .post.sticky a:hover { color: #777;}
-#content .post.sticky a:active { color: #333;}
+#content .post.sticky a:active { color: #333;}*/
 #content .post.sticky p.postfooter {margin-bottom:0;}
-#content blockquote {margin: 0 2em 1em; padding: 1em 1em 0.1em; background: #EEE;}
+/*#content blockquote {margin: 0 2em 1em; padding: 1em 1em 0.1em; background: #EEE;}*/
+#content blockquote {border-left:1px solid #CCC; padding:0 2em;}
+#content .commentnum {background-color:#06C; display:block; float:left; line-height:2.2; padding:0 1em;
+	-webkit-border-top-left-radius:5px;  /*Top Left Corner Rounded*/
+	-webkit-border-top-right-radius:5px;  /*Top Right Corner Rounded*/
+	-webkit-border-bottom-left-radius:5px;  /*Bottom Left Corner Rounded*/
+	-webkit-border-bottom-right-radius:5px;  /*Bottom Right Corner Rounded*/
+	-moz-border-radius-topleft:5px;  /*Top Left Corner Rounded*/
+	-moz-border-radius-topright:5px;  /*Top Right Corner Rounded*/
+	-moz-border-radius-bottomleft:5px;  /*Bottom Left Corner Rounded*/
+	-moz-border-radius-bottomright:5px;  /*Bottom Right Corner Rounded*/}
+#content a.commentnum:link, #content a.commentnum:visited {color:#FFF; text-decoration:none;}
+#content a.commentnum:hover {color:#CCC; text-decoration:none;}
+#content a.commentnum:active {color:#FFF; text-decoration:none;}
 
 #commentform #author, #commentform #email, #commentform #url { border: 1px solid #999;}
 #commentform textarea { border: 1px solid #999;}
@@ -102,10 +122,11 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 
 #sidebar {float:left; text-align:left; width:250px;}
 #sidebar h2, #sidebar h3 {font-size:123%;}
-#sidebar ul {margin-bottom:1em; padding-left:1em;}
-#sidebar ul ul {margin-bottom:0;}
+#sidebar ul {border-bottom:1px solid #999; margin-bottom:1em; padding:0 0 1em 1em;}
+#sidebar ul ul {border:none; margin-bottom:0; padding:0 0 0 1em;}
 #sidebar li {line-height:1.5; list-style-type:none; margin-bottom:1em;}
 #sidebar ul li {list-style-type:disc; margin-bottom:0;}
+#sidebar #searchform {border-bottom:1px solid #999; padding-bottom:1em;}
 
 #ft {background:#333; color:#FFF; clear:both; padding:1em 0;}
 #ft a:link, #ft a:visited {color: #FFF;}
