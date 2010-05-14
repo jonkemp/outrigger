@@ -16,13 +16,9 @@
 			<?php or_post_title(); ?>
 			<?php or_postmeta(); ?>
 
-			<div class="entry">
-				<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
+			<?php or_content(); ?>
 
-				<?php wp_link_pages(array('before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
-				
-				<?php or_postfooter(); ?>
-			</div>
+			<?php or_postfooter(); ?>
 			
 			<?php or_related_posts(); ?>
 		</div>
