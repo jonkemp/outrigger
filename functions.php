@@ -160,31 +160,110 @@ if ( function_exists('register_sidebar') ) {
 	));
 }
 
+
+/* WordPress Custom Menu */
+
+add_action('init', 'register_custom_menu');
+ 
+function register_custom_menu() {
+	register_nav_menu( 'custom-menu', __( 'Custom Menu' ) );
+}
+
+
+/* Action Hooks */
+
 function or_header() {
     do_action('or_header');
 }
+
+
+function or_page_top() {
+    do_action('or_page_top');
+}
+
+
+function or_below_header() {
+    do_action('or_below_header');
+}
+
+
+function or_above_content() {
+    do_action('or_above_content');
+}
+
+
+function or_top_nav() {
+    do_action('or_top_nav');
+}
+
+
+function or_bottom_nav() {
+	if(function_exists('wp_pagenavi')) {
+		wp_pagenavi(); 
+	} else {
+		posts_nav_link();
+	} 
+}
+
+
+function or_image_nav() {
+    do_action('or_image_nav');
+}
+
+
+function or_related_posts() {
+    do_action('or_related_posts');
+}
+
+
+function or_above_comments() {
+    do_action('or_above_comments');
+}
+
+
+function or_comment_nav() {
+    do_action('or_comment_nav');
+}
+
+
+function or_above_commentform() {
+    do_action('or_above_commentform');
+}
+
+
+function or_above_sidebar() {
+    do_action('or_above_sidebar');
+}
+
+
+function or_between_sidebar() {
+    do_action('or_between_sidebar');
+}
+
+
+function or_below_sidebar() {
+    do_action('or_below_sidebar');
+}
+
+
+function or_above_footer() {
+    do_action('or_above_footer');
+}
+
+
+/* Filter Hooks */
 
 function or_title() {	
 	$title = wp_title('&laquo;', false, 'right') . " " . get_bloginfo('name');
 	echo apply_filters( 'or_title', $title );
 }
 
-function or_page_top() {
-    do_action('or_page_top');
-}
 
 function or_subtitle() {	
 	$subtitle = '<div class="description">' . get_bloginfo('description') . '</div>';
 	echo apply_filters( 'or_subtitle', $subtitle );
 }
 
-function or_below_header() {
-    do_action('or_below_header');
-}
-
-function or_above_content() {
-    do_action('or_above_content');
-}
 
 function or_page_title() {	
 	  $post = $posts[0]; // Hack. Set $post so that the_date() works.
@@ -208,6 +287,7 @@ function or_page_title() {
 	echo apply_filters( 'or_page_title', $title );
 }
 
+
 function or_post_title() {	
 	if ( is_single() || is_page() ) {
 		$title = '<h2>' . get_the_title() . '</h2>';
@@ -218,6 +298,7 @@ function or_post_title() {
 	}
 	echo apply_filters( 'or_post_title', $title );
 }
+
 
 function or_postmeta() {
 	global $id;
@@ -234,6 +315,7 @@ function or_postmeta() {
 	echo apply_filters( 'or_postmeta', $postmeta );
 }
 
+
 function or_content() {
     if (is_search()) {
 		$postcontent = '<p>';
@@ -247,6 +329,7 @@ function or_content() {
 	}
 	echo apply_filters( 'or_content', $postcontent );
 }
+
 
 function or_postfooter() {
 	global $id;
@@ -273,26 +356,12 @@ function or_postfooter() {
 	echo apply_filters( 'or_postfooter', $postfooter );
 }
 
-function or_top_nav() {
-    do_action('or_top_nav');
-}
 
 function or_top_nav_fn() { ?>
 	<div class="navigation"><?php previous_post_link('&laquo; %link |') ?> <a href="<?php bloginfo('wpurl') ?>">Main</a> <?php next_post_link('| %link &raquo;') ?></div>
 <?php } 
 add_action('or_top_nav','or_top_nav_fn');
 
-function or_bottom_nav() {
-	if(function_exists('wp_pagenavi')) {
-		wp_pagenavi(); 
-	} else {
-		posts_nav_link();
-	} 
-}
-
-function or_image_nav() {
-    do_action('or_image_nav');
-}
 
 function or_image_nav_fn() { ?>
 	<div class="navigation">
@@ -302,9 +371,6 @@ function or_image_nav_fn() { ?>
 <?php }
 add_action('or_image_nav','or_image_nav_fn');
 
-function or_related_posts() {
-    do_action('or_related_posts');
-}
 
 function or_related_posts_fn() {
 	if(function_exists('related_posts')) {
@@ -316,13 +382,6 @@ function or_related_posts_fn() {
 }
 add_action('or_related_posts','or_related_posts_fn');
 
-function or_above_comments() {
-    do_action('or_above_comments');
-}
-
-function or_comment_nav() {
-    do_action('or_comment_nav');
-}
 
 function or_comment_nav_fn() { ?>
 	<div class="navigation">
@@ -332,25 +391,6 @@ function or_comment_nav_fn() { ?>
 <?php }
 add_action('or_comment_nav','or_comment_nav_fn');
 
-function or_above_commentform() {
-    do_action('or_above_commentform');
-}
-
-function or_above_sidebar() {
-    do_action('or_above_sidebar');
-}
-
-function or_between_sidebar() {
-    do_action('or_between_sidebar');
-}
-
-function or_below_sidebar() {
-    do_action('or_below_sidebar');
-}
-
-function or_above_footer() {
-    do_action('or_above_footer');
-}
 
 function or_footer() {
 	$or_footer_code = get_option('or_footer_code');
@@ -363,4 +403,5 @@ function or_footer() {
 	
 	echo apply_filters( 'or_footer', $footer );
 }
+
 ?>

@@ -1,11 +1,11 @@
 /*
 Theme Name: Outrigger
 Theme URI: http://kempwire.com/outrigger/
-Description: Outrigger is a small WordPress theme framework, designed for use with child themes. Outrigger uses a basic 2 column theme derived from the WordPress Default theme.
-Version: 1.2.1
+Description: Outrigger is a WordPress parent theme, designed for use with child themes. Outrigger uses a basic 2 column theme.
+Version: 1.3
 Author: Jonathan Kemp
 Author URI: http://kempwire.com/
-Tags: two-columns, right-sidebar, fixed-width, theme-options, threaded-comments
+Tags: two-columns, right-sidebar, fixed-width, theme-options, threaded-comments, sticky-post
 .
 Copyright 2010  Jonathan Kemp  (http://kempwire.com/)
 This work, like WordPress, is released under GNU General Public License, version 2 (GPL).
@@ -64,6 +64,16 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 #hd a:link, #hd a:visited {color: #EEE; text-decoration:none;}
 #hd a:hover {color: #CCC;}
 #hd a:active {color: #EEE; text-decoration:none;}
+
+.menu { border-bottom: 1px solid #CCC; margin:0 auto 1em; width:974px;}
+.menu li { float: left; margin-right: 0.5em; margin-bottom: 0.5em;}
+.menu a { display: block; padding: 0 1em; background: #CCC; line-height: 2; font-weight:bold;
+	-moz-border-radius:4px;  /* Mozilla */
+	-webkit-border-radius:4px;  /* WebKit */
+	border-radius:4px;}  /* Standard */
+.menu a:link, .menu a:visited { text-decoration: none;}
+.menu a:hover { color: #EEE; text-decoration: none;}
+.menu a:active { text-decoration: none;}
 
 #bd {margin:0 auto 1em; width:974px;}
 
