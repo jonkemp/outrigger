@@ -29,5 +29,3 @@
 		<?php or_subtitle(); ?>
 	</div>
 </div>
-
-<?php wp_nav_menu( array( 'theme_location' => 'custom-menu', 'container_class' => 'menu clrfix', 'menu_class' => '', 'fallback_cb' => '' ) ); ?>

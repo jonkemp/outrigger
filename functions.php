@@ -166,11 +166,13 @@ if ( function_exists('register_sidebar') ) {
 add_action('init', 'register_custom_menu');
  
 function register_custom_menu() {
-	register_nav_menu( 'custom-menu', __( 'Custom Menu' ) );
+	if ( function_exists('register_nav_menu') ) {
+		register_nav_menu( 'custom-menu', __( 'Custom Menu' ) );
+	}
 }
 
 
-/* Action Hooks */
+/* Theme Hooks */
 
 function or_header() {
     do_action('or_header');
@@ -194,15 +196,6 @@ function or_above_content() {
 
 function or_top_nav() {
     do_action('or_top_nav');
-}
-
-
-function or_bottom_nav() {
-	if(function_exists('wp_pagenavi')) {
-		wp_pagenavi(); 
-	} else {
-		posts_nav_link();
-	} 
 }
 
 
@@ -251,7 +244,7 @@ function or_above_footer() {
 }
 
 
-/* Filter Hooks */
+/* Theme Filters */
 
 function or_title() {	
 	$title = wp_title('&laquo;', false, 'right') . " " . get_bloginfo('name');
@@ -357,10 +350,42 @@ function or_postfooter() {
 }
 
 
+function or_footer() {
+	$or_footer_code = get_option('or_footer_code');
+	
+	if ($or_footer_code) {
+		$footer = stripslashes( $or_footer_code );
+	} else { 
+		$footer = '<p>' . get_bloginfo('name') . ' proudly powered by <a href="http://wordpress.org/" target="_blank">WordPress</a></p>';
+	}
+	
+	echo apply_filters( 'or_footer', $footer );
+}
+
+
+/* Theme Functions */
+
+function or_custom_menu() {
+	if ( function_exists('wp_nav_menu') ) {
+		wp_nav_menu( array( 'theme_location' => 'custom-menu', 'container_class' => 'menu clrfix', 'menu_class' => '', 'fallback_cb' => '' ) );
+	}
+}
+add_action('or_below_header', 'or_custom_menu');
+
+
 function or_top_nav_fn() { ?>
 	<div class="navigation"><?php previous_post_link('&laquo; %link |') ?> <a href="<?php bloginfo('wpurl') ?>">Main</a> <?php next_post_link('| %link &raquo;') ?></div>
 <?php } 
 add_action('or_top_nav','or_top_nav_fn');
+
+
+function or_bottom_nav() {
+	if(function_exists('wp_pagenavi')) {
+		wp_pagenavi(); 
+	} else {
+		posts_nav_link();
+	} 
+}
 
 
 function or_image_nav_fn() { ?>
@@ -390,18 +415,5 @@ function or_comment_nav_fn() { ?>
 	</div>
 <?php }
 add_action('or_comment_nav','or_comment_nav_fn');
-
-
-function or_footer() {
-	$or_footer_code = get_option('or_footer_code');
-	
-	if ($or_footer_code) {
-		$footer = stripslashes( $or_footer_code );
-	} else { 
-		$footer = '<p>' . get_bloginfo('name') . ' proudly powered by <a href="http://wordpress.org/" target="_blank">WordPress</a></p>';
-	}
-	
-	echo apply_filters( 'or_footer', $footer );
-}
 
 ?>
