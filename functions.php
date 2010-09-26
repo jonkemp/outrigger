@@ -15,11 +15,23 @@ $options = array (
             "id" => $shortname."_footer_code",
             "type" => "textarea"),
 	
+	array(	"type" => "close"),
+	
+	array(	"name" => "Comment Options",
+			"type" => "title"),
+			
+	array(	"type" => "open"),
+
+	array(	"name" => "Gravatar Size:",
+			"desc" => " px &nbsp; Size of gravatar in the user listings.",
+            "id" => $shortname."_avatar_size",
+            "type" => "number"),
+	
 	array(	"type" => "close")
 	
 );
 
-function mytheme_add_admin() {
+function or_add_admin() {
 
     global $themename, $shortname, $options;
 
@@ -39,11 +51,11 @@ function mytheme_add_admin() {
         }
     }
 
-    add_theme_page($themename." Options", "".$themename." Options", 'edit_themes', basename(__FILE__), 'mytheme_admin');
+    add_theme_page($themename." Options", "".$themename." Options", 'edit_themes', basename(__FILE__), 'or_admin');
 
 }
 
-function mytheme_admin() {
+function or_admin() {
 
     global $themename, $shortname, $options;
 
@@ -87,6 +99,17 @@ function mytheme_admin() {
             <td valign="top"><?php echo $value['name']; ?> &nbsp;</td>
             <td><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php if ( get_option( $value['id'] ) != "") { echo get_option( $value['id'] ); } else { echo $value['std']; } ?>" /><br />
 			<span class="description"><?php echo $value['desc']; ?></span></td>
+        </tr>
+
+		<?php 
+		break;
+		
+		case 'number':
+		?>
+        
+        <tr>
+            <td valign="top"><?php echo $value['name']; ?> &nbsp;</td>
+            <td><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="text" size="3" value="<?php if ( get_option( $value['id'] ) != "") { echo get_option( $value['id'] ); } else { echo $value['std']; } ?>" /> <?php echo $value['desc']; ?></td>
         </tr>
 
 		<?php 
@@ -142,7 +165,7 @@ function mytheme_admin() {
 <?php
 }
 
-add_action('admin_menu', 'mytheme_add_admin');
+add_action('admin_menu', 'or_add_admin');
 
 
 if ( function_exists('register_sidebar') ) {
@@ -406,6 +429,18 @@ function or_related_posts_fn() {
 	}
 }
 add_action('or_related_posts','or_related_posts_fn');
+
+
+function or_list_comments() {
+	$or_avatar_size = get_option('or_avatar_size');
+	
+	if ($or_avatar_size) {
+		$args = 'avatar_size=' . $or_avatar_size;
+		wp_list_comments($args);
+	} else { 
+		wp_list_comments();
+	}
+}
 
 
 function or_comment_nav_fn() { ?>
