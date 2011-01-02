@@ -373,6 +373,12 @@ function or_postfooter() {
 }
 
 
+function or_nocomments() {
+	$nocomments = '<p class="nocomments">' . __('Comments are closed.') . '</p>';
+	echo apply_filters( 'or_nocomments', $nocomments );
+}
+
+
 function or_footer() {
 	$or_footer_code = get_option('or_footer_code');
 	

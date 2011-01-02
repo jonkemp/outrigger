@@ -60,6 +60,7 @@
 </div>
 <?php else : // comments are closed ?>
 <div id="respond">
-	<p class="nocomments">Comments are closed.</p>
+	<!--<p class="nocomments">Comments are closed.</p>-->
+	<?php or_nocomments(); ?>
 </div>
 <?php endif; // if you delete this the sky will fall on your head ?>

@@ -116,19 +116,18 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 
 #commentform #author, #commentform #email, #commentform #url { border: 1px solid #999;}
 #commentform textarea { border: 1px solid #999;}
-.commentlist li .avatar {float: right;border: 1px solid #eee; margin:0 0 1em 1em; padding: 2px;background: #fff;}
-.alt{margin:0;padding:10px;}
-#content ol.commentlist{text-align:justify;padding:0;margin-left:0;}
-#content .commentlist li{list-style:none;margin:15px 0 10px;padding:5px 5px 10px 10px; overflow:hidden;}
-.commentlist li ul li{}
-.commentlist p{margin:10px 5px 10px 0;}
-#content ul.children{padding:0;margin-left:0;}
-.thread-alt{background-color:#f8f8f8;}
-.thread-even{background-color:#FFF;}
-.comment-author-admin {background-color:#EEE;}
-.depth-1{border:1px solid #ddd;}
-.even,.alt{border-left:1px solid #ddd;}
-.commentmetadata{margin-bottom:10px;}
+.commentlist li .avatar { float: right;border: 1px solid #eee; margin:0 0 1em 1em; padding: 2px;background: #fff;}
+.alt { margin:0;padding:10px;}
+#content ol.commentlist { text-align:justify;padding:0;margin-left:0;}
+#content .commentlist li { list-style:none;margin:15px 0 10px;padding:5px 5px 10px 10px; overflow:hidden;}
+.commentlist p { margin:10px 5px 10px 0;}
+#content ul.children { padding:0;margin-left:0;}
+.thread-alt { background-color:#f8f8f8;}
+.thread-even { background-color:#FFF;}
+.comment-author-admin { background-color:#EEE;}
+.depth-1 { border:1px solid #ddd;}
+.even, .alt { border-left:1px solid #ddd;}
+.commentmetadata { margin-bottom:10px;}
 
 #sidebar {float:left; text-align:left; width:250px;}
 #sidebar h2, #sidebar h3 {font-size:123%;}
