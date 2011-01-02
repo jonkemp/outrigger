@@ -1,8 +1,8 @@
 /*
 Theme Name: Outrigger
 Theme URI: http://kempwire.com/outrigger/
-Description: Outrigger is a WordPress parent theme, designed for use with child themes. Outrigger uses a basic 2 column theme.
-Version: 1.4
+Description: Outrigger is a parent theme, designed for use with child themes. Outrigger uses a basic 2 column theme.
+Version: 2.0
 Author: Jonathan Kemp
 Author URI: http://kempwire.com/
 Tags: two-columns, right-sidebar, fixed-width, theme-options, threaded-comments, sticky-post
@@ -13,37 +13,54 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 .
 */
 
-/* clrfix for clearing floats */
+/* clear floats */
 
 .clrfix { zoom:1;}
 .clrfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden;}
 
 /* reset CSS */
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0; padding:0;}
-table {border-collapse:collapse; border-spacing:0;}
-fieldset,img {border:0;}
-ol,ul {list-style:none;}
-caption,th {text-align:left;}
-q:before,q:after {content:'';}
-abbr,acronym {border:0;}
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: 2676
+*/
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+/*address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}*/
+li{list-style:none;}
+caption,th{text-align:left;}
+/*h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}*/
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}
 
 /* font reset styles */
+
 /*
-Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
-http://developer.yahoo.net/yui/license.txt
-version: 2.8.0r4
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: 2676
 */
 body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
-select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}
+select,input,button,textarea{font:99% arial,helvetica,clean,sans-serif;}
 table{font-size:inherit;font:100%;}
 pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
 /* Default Outrigger CSS */
 
-body {background:#333; color:#333;}
-p {margin-bottom:1em;}
+body { background:#333; color:#333;}
+p { margin-bottom:1em;}
 a:link, a:visited { color: #555;}
 a:hover { color: #999;}
 a:active { color: #555;}
@@ -58,50 +75,49 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 
 #doc {/*margin:0 auto; width:974px;*/ background:#FFF; text-align:center;}
 
-#hd {background:#06C; border-bottom:5px solid #B0B0B0; color:#FFF; margin:0 0 1.7em; padding:1em 0; text-align:left;}
-#headerimg {margin:0 auto; width:974px;}
+#hd {background:#06C; border-bottom:5px solid #B0B0B0; color:#FFF; margin:0; padding:2em 0 1em; text-align:left;}
+#branding {margin:0 auto; width:974px;}
 #hd .description {margin-bottom:1em;}
 #hd a:link, #hd a:visited {color: #EEE; text-decoration:none;}
 #hd a:hover {color: #CCC;}
 #hd a:active {color: #EEE; text-decoration:none;}
 
-.menu { border-bottom: 1px solid #CCC; margin:0 auto 1em; width:974px;}
-.menu li { float: left; margin-right: 0.5em; margin-bottom: 0.5em;}
-.menu a { display: block; padding: 0 1em; background: #CCC; line-height: 2; font-weight:bold;
-	-moz-border-radius:4px;  /* Mozilla */
-	-webkit-border-radius:4px;  /* WebKit */
-	border-radius:4px;}  /* Standard */
-.menu a:link, .menu a:visited { text-decoration: none;}
-.menu a:hover { color: #EEE; text-decoration: none;}
+.menu {/* border-bottom: 1px solid #CCC;*/  background: #B0B0B0; height:26px; margin:-1px auto 2em; width:974px;}
+.menu li { float: left; margin-bottom: 0.5em;}
+.menu a { display: block; padding: 0 1em; background: #B0B0B0; line-height: 2; font-weight:bold;}
+#hd .menu a:link, #hd .menu a:visited { color:#FFF; text-decoration: none;}
+#hd .menu a:hover { color: #EEE; text-decoration: none;}
 .menu a:active { text-decoration: none;}
+.menu li ul { position: absolute; left: -999em;}
+.menu li:hover ul { left: auto;}
+.menu li ul li { float:none; margin-bottom:0;}
 
 #bd {margin:0 auto 1em; width:974px;}
 
-#content {float:left; margin-right:36px; text-align:left; width:688px;}
-#content h2 {margin-bottom:0.3em;}
-#content h2 a {text-decoration:none;}
-#content h2 a:link, #content h2 a:visited {text-decoration:none;}
-#content h2 a:hover {border-bottom:1px solid #666;}
-#content h2 a:active {text-decoration:none;}
-#content .navigation, #content h3 {margin-bottom:1em;}
-#content .entry, #content #searchform {margin-top:1em;}
-#content .entry h3 {margin-bottom:0;}
-#content .entry ul {margin-bottom:1em; margin-left: 1em;}
-#content .entry ol {margin-bottom:1em; margin-left: 2em;}
-#content .entry ul ul, #content .entry ol ol {margin-bottom:0; margin-left:1em;}
-#content .entry ul li {list-style-type: disc;}
-#content .entry ol li {list-style-type: decimal;}
-.postmetadata {font-size:93%;}
-#content .post, #content .page {border-bottom:1px solid #000; color:#444; margin-bottom:1em;}
-/*#content .post.sticky {background-color:#FFC; border-bottom:none; padding:1em;}*/
-#content .post.sticky {border:1px solid #999; margin-bottom:1.5em; padding:1em;}
-/*#content .post.sticky a:link, #content .post.sticky a:visited { color: #333;}
-#content .post.sticky a:hover { color: #777;}
-#content .post.sticky a:active { color: #333;}*/
-#content .post.sticky p.postfooter {margin-bottom:0;}
-/*#content blockquote {margin: 0 2em 1em; padding: 1em 1em 0.1em; background: #EEE;}*/
-#content blockquote {border-left:1px solid #CCC; padding:0 2em;}
-#content .commentnum {background-color:#06C; display:block; float:left; padding:5px 10px;
+#content { float:left; margin-right:36px; text-align:left; width:688px;}
+#content h2 { margin-bottom:0.3em;}
+#content h2 a { text-decoration:none;}
+#content h2 a:link, #content h2 a:visited { text-decoration:none;}
+#content h2 a:hover { border-bottom:1px solid #666;}
+#content h2 a:active { text-decoration:none;}
+#content .navigation, #content h3 { margin-bottom:1em;}
+#content #searchform { margin-top:1em;}
+#content .entry { margin:1em 0;}
+#content .entry h3 { margin-bottom:0;}
+#content .entry ul { margin-bottom:1em; margin-left: 1em;}
+#content .entry ol { margin-bottom:1em; margin-left: 2em;}
+#content .entry ul ul, #content .entry ol ol { margin-bottom:0; margin-left:1em;}
+#content .entry ul li { list-style-type: disc;}
+#content .entry ol li { list-style-type: decimal;}
+.postmetadata { font-size:93%;}
+#content .post, #content .page { border-bottom:1px solid #000; color:#444; margin-bottom:1em;}
+#content .attachment { color:#444;}
+#content .attachment .entry { border-bottom:1px solid #000; padding-bottom:1em;}
+#content p.attachment { border-bottom:none;}
+#content .post.sticky { border:1px solid #999; margin-bottom:1.5em; padding:1em;}
+#content .post.sticky p.postfooter { margin-bottom:0;}
+#content blockquote { border-left:1px solid #CCC; padding:0 2em;}
+#content .commentnum { background-color:#06C; display:block; float:left; padding:5px 10px;
 	-webkit-border-top-left-radius:5px;  /*Top Left Corner Rounded*/
 	-webkit-border-top-right-radius:5px;  /*Top Right Corner Rounded*/
 	-webkit-border-bottom-left-radius:5px;  /*Bottom Left Corner Rounded*/
@@ -110,32 +126,33 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 	-moz-border-radius-topright:5px;  /*Top Right Corner Rounded*/
 	-moz-border-radius-bottomleft:5px;  /*Bottom Left Corner Rounded*/
 	-moz-border-radius-bottomright:5px;  /*Bottom Right Corner Rounded*/}
-#content a.commentnum:link, #content a.commentnum:visited {color:#FFF; text-decoration:none;}
-#content a.commentnum:hover {color:#CCC; text-decoration:none;}
-#content a.commentnum:active {color:#FFF; text-decoration:none;}
+#content a.commentnum:link, #content a.commentnum:visited { color:#FFF; text-decoration:none;}
+#content a.commentnum:hover { color:#CCC; text-decoration:none;}
+#content a.commentnum:active { color:#FFF; text-decoration:none;}
 
-#commentform #author, #commentform #email, #commentform #url { border: 1px solid #999;}
-#commentform textarea { border: 1px solid #999;}
-.commentlist li .avatar { float: right;border: 1px solid #eee; margin:0 0 1em 1em; padding: 2px;background: #fff;}
-.alt { margin:0;padding:10px;}
-#content ol.commentlist { text-align:justify;padding:0;margin-left:0;}
-#content .commentlist li { list-style:none;margin:15px 0 10px;padding:5px 5px 10px 10px; overflow:hidden;}
+.commentlist li .avatar { float:right; border:1px solid #eee; margin:0 0 1em 1em; padding:2px; background:#fff;}
+#content ol.commentlist { margin-bottom:2em; padding:0; text-align:justify;}
+#content .commentlist li { list-style:none; margin:15px 0 10px; padding:5px 5px 10px 10px; overflow:hidden;}
 .commentlist p { margin:10px 5px 10px 0;}
-#content ul.children { padding:0;margin-left:0;}
+#content ul.children { padding:0; margin-left:0;}
 .thread-alt { background-color:#f8f8f8;}
 .thread-even { background-color:#FFF;}
 .comment-author-admin { background-color:#EEE;}
 .depth-1 { border:1px solid #ddd;}
 .even, .alt { border-left:1px solid #ddd;}
 .commentmetadata { margin-bottom:10px;}
+#content #reply-title { margin-bottom:0.5em;}
+#commentform #author, #commentform #email, #commentform #url { border:1px solid #999; padding:2px; width:98%;}
+#commentform textarea { border:1px solid #999; padding:2px; width:98%;}
+#commentform .required { color:#F00;}
 
-#sidebar {float:left; text-align:left; width:250px;}
-#sidebar h2, #sidebar h3 {font-size:123%;}
-#sidebar ul {border-bottom:1px solid #999; margin-bottom:1em; padding:0 0 1em 1em;}
-#sidebar ul ul {border:none; margin-bottom:0; padding:0 0 0 1em;}
-#sidebar li {line-height:1.5; list-style-type:none; margin-bottom:1em;}
-#sidebar ul li {list-style-type:disc; margin-bottom:0;}
-#sidebar #searchform {border-bottom:1px solid #999; padding-bottom:1em;}
+#sidebar { float:left; text-align:left; width:250px;}
+#sidebar h2, #sidebar h3 { font-size:123%;}
+#sidebar .widget { border-top:1px solid #999; padding:1em 0;}
+#sidebar .widget:first-child { border-top:none; padding:0 0 1em;}
+#sidebar ul { padding:0 0 0 1em;}
+#sidebar li { line-height:1.5; list-style-type:none; margin-bottom:1em;}
+#sidebar ul li { list-style-type:disc; margin-bottom:0;}
 
 #ft {background:#333; color:#FFF; clear:both; padding:1em 0;}
 #ft a:link, #ft a:visited {color: #FFF;}

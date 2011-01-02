@@ -5,7 +5,7 @@ This work, like WordPress, is released under GNU General Public License, version
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 
-Outrigger is a WordPress parent theme, designed for use with child themes. Outrigger uses a basic 2 column theme.
+Outrigger is a parent theme, designed for use with child themes. Outrigger uses a basic 2 column theme.
 
 
 Features
