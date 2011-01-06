@@ -4,6 +4,13 @@
  * Outrigger custom functions
  */
 
+function remove_or_actions() {
+ 	remove_action('wp_head', 'rsd_link');
+	remove_action('wp_head', 'wlwmanifest_link');
+	remove_action('wp_head', 'wp_generator');
+}
+add_action('init','remove_or_actions');
+
 function or_header() {
     do_action('or_header');
 }
