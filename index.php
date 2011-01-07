@@ -39,6 +39,16 @@
 				</div>
 		
 				<?php comments_template( '', true );
+			
+			} else if ( is_page() ) { ?>
+			
+				<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+
+					<?php or_post(); ?>
+				
+				</div>
+		
+				<?php comments_template( '', true );
 
 			} else { ?>
 

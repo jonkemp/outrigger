@@ -82,8 +82,8 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 #hd a:hover {color: #CCC;}
 #hd a:active {color: #EEE; text-decoration:none;}
 
-.menu {/* border-bottom: 1px solid #CCC;*/  background: #B0B0B0; height:26px; margin:-1px auto 2em; width:974px;}
-.menu li { float: left; margin-bottom: 0.5em;}
+.menu {/* border-bottom: 1px solid #CCC;*/  background: #B0B0B0; height:26px; margin:-1px auto 0; width:974px;}
+.menu li { float: left;/* margin-bottom: 0.5em;*/}
 .menu a { display: block; padding: 0 1em; background: #B0B0B0; line-height: 2; font-weight:bold;}
 #hd .menu a:link, #hd .menu a:visited { color:#FFF; text-decoration: none;}
 #hd .menu a:hover { color: #EEE; text-decoration: none;}
@@ -94,7 +94,7 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 
 #bd {margin:0 auto 1em; width:974px;}
 
-#content { float:left; margin-right:36px; text-align:left; width:688px;}
+#content { float:left; margin:2em 36px 0 0; text-align:left; width:688px;}
 #content h2 { margin-bottom:0.3em;}
 #content h2 a { text-decoration:none;}
 #content h2 a:link, #content h2 a:visited { text-decoration:none;}
@@ -146,7 +146,7 @@ img.alignnone {margin-bottom: 1em; padding:1px; border: 1px solid #B7B7B7;}
 #commentform textarea { border:1px solid #999; padding:2px; width:98%;}
 #commentform .required { color:#F00;}
 
-#sidebar { float:left; text-align:left; width:250px;}
+#sidebar { float:left; margin:2em 0 0; text-align:left; width:250px;}
 #sidebar h2, #sidebar h3 { font-size:123%;}
 #sidebar .widget { border-top:1px solid #999; padding:1em 0;}
 #sidebar .widget:first-child { border-top:none; padding:0 0 1em;}
