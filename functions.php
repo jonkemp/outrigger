@@ -1,15 +1,26 @@
 <?php
 
+add_action( 'after_setup_theme', 'or_theme_setup' );
+
 /**
  * Outrigger custom functions
  */
+ 
+function or_theme_setup() {
+	add_theme_support('automatic-feed-links');
+	
+	add_action('init','remove_or_actions');
+	add_action('init', 'register_custom_menu');
+	add_action( 'widgets_init', 'or_widgets_init' );
+
+	add_action('admin_menu', 'or_add_admin');
+}
 
 function remove_or_actions() {
  	remove_action('wp_head', 'rsd_link');
 	remove_action('wp_head', 'wlwmanifest_link');
 	remove_action('wp_head', 'wp_generator');
 }
-add_action('init','remove_or_actions');
 
 function or_header() {
     do_action('or_header');
@@ -289,24 +300,24 @@ function or_footer() {
 }
 
 /**
- * Feed links
- */
-
-add_theme_support('automatic-feed-links');
-
-/**
  * Register sidebars
  */
 
-if ( function_exists('register_sidebar') ) {
-	register_sidebar(array('name'=>'Sidebar Top',
+function or_widgets_init() {
+	register_sidebar(array(
+		'id' => 'sidebar-top',
+		'name' => __( 'Sidebar Top' ),
+		'description' => __( 'The first sidebar widget area' ),
 		'before_widget' => '<div class="widget">',
 		'after_widget' => '</div',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
 
-	register_sidebar(array('name'=>'Sidebar Bottom',
+	register_sidebar(array(
+		'id' => 'sidebar-bottom',
+		'name' => __( 'Sidebar Bottom' ),
+		'description' => __( 'The second sidebar widget area' ),
 		'before_widget' => '<div class="widget">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
@@ -317,8 +328,6 @@ if ( function_exists('register_sidebar') ) {
 /**
  * Register custom menu
  */
-
-add_action('init', 'register_custom_menu');
  
 function register_custom_menu() {
 	if ( function_exists('register_nav_menu') ) {
@@ -330,49 +339,49 @@ function register_custom_menu() {
  * Theme options admin page
  */
 
-$themename = "Outrigger";
-$shortname = "or";
-
-$options = array (
-
-	array(	"name" => "Footer HTML",
-			"type" => "title"),
-			
-	array(	"type" => "open"),
-			
-	array(	"name" => "HTML",
-			"desc" => "Content to be displayed in the footer",
-            "id" => $shortname."_footer_code",
-            "type" => "textarea"),
-	
-	array(	"type" => "close"),
-	
-	array(	"name" => "Comment Options",
-			"type" => "title"),
-			
-	array(	"type" => "open"),
-
-	array(	"name" => "Gravatar Size:",
-			"desc" => " px &nbsp; Size of gravatar in the user listings.",
-            "id" => $shortname."_avatar_size",
-            "type" => "number"),
-	
-	array(	"type" => "close")
-	
-);
-
 function or_add_admin() {
 
-    global $themename, $shortname, $options;
+    global $or_themename, $or_shortname, $or_options;
+	
+	$or_themename = "Outrigger";
+	$or_shortname = "or";
+	
+	$or_options = array (
+	
+		array(	"name" => "Footer HTML",
+				"type" => "title"),
+				
+		array(	"type" => "open"),
+				
+		array(	"name" => "HTML",
+				"desc" => "Content to be displayed in the footer",
+				"id" => $or_shortname."_footer_code",
+				"type" => "textarea"),
+		
+		array(	"type" => "close"),
+		
+		array(	"name" => "Comment Options",
+				"type" => "title"),
+				
+		array(	"type" => "open"),
+	
+		array(	"name" => "Gravatar Size:",
+				"desc" => " px &nbsp; Size of gravatar in the user listings.",
+				"id" => $or_shortname."_avatar_size",
+				"type" => "number"),
+		
+		array(	"type" => "close")
+		
+	);
 
     if ( isset($_GET['page']) && $_GET['page'] == basename(__FILE__) ) {
     
         if ( isset($_REQUEST['action']) && 'save' == $_REQUEST['action'] ) {
 
-                foreach ($options as $value) {
+                foreach ($or_options as $value) {
                     update_option( $value['id'], $_REQUEST[ $value['id'] ] ); }
 
-                foreach ($options as $value) {
+                foreach ($or_options as $value) {
                     if( isset( $_REQUEST[ $value['id'] ] ) ) { update_option( $value['id'], $_REQUEST[ $value['id'] ]  ); } else { delete_option( $value['id'] ); } }
 
                 header("Location: themes.php?page=functions.php&saved=true");
@@ -381,23 +390,23 @@ function or_add_admin() {
         }
     }
 
-    add_theme_page($themename." Options", "".$themename." Options", 'edit_themes', basename(__FILE__), 'or_admin');
+    add_theme_page($or_themename." Options", "".$or_themename." Options", 'edit_themes', basename(__FILE__), 'or_admin');
 
 }
 
 function or_admin() {
 
-    global $themename, $shortname, $options;
+    global $or_themename, $or_shortname, $or_options;
 
-    if ( isset($_REQUEST['saved']) ) echo '<div id="message" class="updated fade"><p><strong>' . $themename . __(' settings saved.</strong></p></div>');
+    if ( isset($_REQUEST['saved']) ) echo '<div id="message" class="updated fade"><p><strong>' . $or_themename . __(' settings saved.</strong></p></div>');
     
 ?>
 <div class="wrap">
-<h2><?php echo $themename . __(' settings'); ?></h2>
+<h2><?php echo $or_themename . __(' settings'); ?></h2>
 
 <form method="post">
 
-<?php foreach ($options as $value) { 
+<?php foreach ($or_options as $value) { 
     
 	switch ( $value['type'] ) {
 	
@@ -494,7 +503,5 @@ function or_admin() {
 
 <?php
 }
-
-add_action('admin_menu', 'or_add_admin');
 
 ?>

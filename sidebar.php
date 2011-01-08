@@ -3,8 +3,12 @@
 	
 	<?php or_above_sidebar(); ?>
 	
-	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Top') ) : ?>
-		
+	<?php if ( is_active_sidebar( 'sidebar-top' ) ) : ?>
+
+		<?php dynamic_sidebar( 'sidebar-top' ); ?>
+
+	<?php else : ?>
+
 		<div class="widget">
 			<h3><?php _e('Search'); ?></h3>
 			<?php get_search_form(); ?>
@@ -45,14 +49,12 @@
 				</ul>
 			</div>
 		<?php } ?>
-		
+
 	<?php endif; ?>
 	
 	<?php or_between_sidebar(); ?>
-
-	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Bottom') ) : ?>
 	
-	<?php endif; ?>
+	<?php dynamic_sidebar( 'sidebar-top' ); ?>
 	
 	<?php or_below_sidebar(); ?>
 	
