@@ -89,74 +89,94 @@ add_action('or_top_nav','or_top_nav_fn');
 function or_post() {	
 	global $id;
 	
+	or_post_title();
+	
+	or_postmeta();
+	
+	or_content();
+	
+	or_postfooter();
+}
+
+function or_post_title() {	
 	if ( is_single() || is_page() ) {
-		$content = '<h2>' . get_the_title() . '</h2>';
+		$title = '<h2>' . get_the_title() . '</h2>';
 	} elseif ( is_home() ) {
-		$content = '<h2><a href="' . get_permalink() . __('" rel="bookmark" title="Permanent Link to  ') . the_title_attribute('echo=0') . '">' . get_the_title() . '</a></h2>';
+		$title = '<h2><a href="' . get_permalink() . __('" rel="bookmark" title="Permanent Link to  ') . the_title_attribute('echo=0') . '">' . get_the_title() . '</a></h2>';
 	} else {
-		$content = '<h2 id="post-' .  get_the_ID() . '"><a href="' . get_permalink() . __('" rel="bookmark" title="Permanent Link to  ') . the_title_attribute('echo=0') . '">' . get_the_title() . '</a></h2>';
+		$title = '<h2 id="post-' .  get_the_ID() . '"><a href="' . get_permalink() . __('" rel="bookmark" title="Permanent Link to  ') . the_title_attribute('echo=0') . '">' . get_the_title() . '</a></h2>';
 	}
+	echo apply_filters( 'or_post_title', $title );
+}
+
+function or_postmeta() {
+	global $id;
 	
 	if ( !is_page() ) {
-		$content .= '<p class="postmetadata">' . __('Posted on ');
-		$content .= get_the_time('F jS, Y');
-		$content .= __(' by ');
-		$content .= get_the_author();
+		$postmeta = '<p class="postmetadata">' . __('Posted on ');
+		$postmeta .= get_the_time('F jS, Y');
+		$postmeta .= __(' by ');
+		$postmeta .= get_the_author();
 		if (current_user_can('edit_posts')) {
-	       	$content .= ' | <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $id .'">';
-	   		$content .= __('Edit') . '</a>';
+	       	$postmeta .= ' | <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $id .'">';
+	   		$postmeta .= __('Edit') . '</a>';
 	   	}
-		$content .= '</p>';
+		$postmeta .= '</p>';
 	}
-	
-	if ( is_search() ) {
-		$content .= '<p>';
-		$content .= get_the_excerpt();
-		$content .= '</p>';
+	echo apply_filters( 'or_postmeta', $postmeta );
+}
+
+function or_content() {
+    if ( is_search() ) {
+		$postcontent = '<p>';
+		$postcontent .= get_the_excerpt();
+		$postcontent .= '</p>';
 	} else if ( is_archive() ) {
-		$content .= '<div class="entry">';
-		$content .= get_the_excerpt();
-		$content .= '</div>';
+		$postcontent = '<div class="entry">';
+		$postcontent .= get_the_excerpt();
+		$postcontent .= '</div>';
 	} else if ( is_attachment() ) {
-		$content .= '<div class="entry">';
-		$content .= '<p class="attachment"><a href="';
-		$content .= wp_get_attachment_url($post->ID);
-		$content .= '">';
-		$content .= wp_get_attachment_image( $post->ID, 'medium' );
-		$content .= '</a></p>';
-		$content .= '<div class="caption">';
+		$postcontent = '<div class="entry">';
+		$postcontent .= '<p class="attachment"><a href="';
+		$postcontent .= wp_get_attachment_url($post->ID);
+		$postcontent .= '">';
+		$postcontent .= wp_get_attachment_image( $post->ID, 'medium' );
+		$postcontent .= '</a></p>';
+		$postcontent .= '<div class="caption">';
 		if ( !empty($post->post_excerpt) ) {
-			$content .= get_the_excerpt(); // this is the "caption"
+			$postcontent .= get_the_excerpt(); // this is the "caption"
 		}
-		$content .= '</div>';
-		$content .= get_the_content('<p>Continue reading &raquo;</p>');
-		$content .= '</div>';
+		$postcontent .= '</div>';
+		$postcontent .= get_the_content('<p>Continue reading &raquo;</p>');
+		$postcontent .= '</div>';
 	} else {
-		$content .= '<div class="entry">';
-		$content .= apply_filters( 'the_content', get_the_content('<p>Continue reading &raquo;</p>'));
-		$content .= wp_link_pages( array( 'before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number', 'echo' => 0 ) );
-		$content .= '</div>';
+		$postcontent = '<div class="entry">';
+		$postcontent .= apply_filters( 'the_content', get_the_content('<p>Continue reading &raquo;</p>'));
+		$postcontent .= wp_link_pages( array( 'before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number', 'echo' => 0 ) );
+		$postcontent .= '</div>';
 	}
-	
+	echo apply_filters( 'or_content', $postcontent );
+}
+
+function or_postfooter() {
 	if (!is_singular()) {
-		$content .= '<p class="postfooter clrfix">';
+		$postfooter = '<p class="postfooter clrfix">';
 		if ( comments_open() ) {
 			 $postcommentnumber = get_comments_number();
 			if ($postcommentnumber > '1') {
-				$content .= '<a href="' . get_permalink() . '#comments" class="commentnum">';
-				$content .= get_comments_number() . __(' Comments') . '</a>';
+				$postfooter .= '<a href="' . get_permalink() . '#comments" class="commentnum">';
+				$postfooter .= get_comments_number() . __(' Comments') . '</a>';
 			} elseif ($postcommentnumber == '1') {
-				$content .= '<a href="' . get_permalink() . '#comments" class="commentnum">';
-				$content .= get_comments_number() . __(' Comment') . '</a>';
+				$postfooter .= '<a href="' . get_permalink() . '#comments" class="commentnum">';
+				$postfooter .= get_comments_number() . __(' Comment') . '</a>';
 			} elseif ($postcommentnumber == '0') {
-				$content .= '<a href="' . get_permalink() . '#respond" class="commentnum">';
-				$content .= __('Leave a comment') . '</a>';
+				$postfooter .= '<a href="' . get_permalink() . '#respond" class="commentnum">';
+				$postfooter .= __('Leave a comment') . '</a>';
 			}
 		}
-		$content .= '</p>';
+		$postfooter .= '</p>';
 	}
-	
-	echo apply_filters( 'or_post', $content );
+	echo apply_filters( 'or_postfooter', $postfooter );
 }
 
 function or_related_posts() {
