@@ -54,7 +54,7 @@
 	
 	<?php or_between_sidebar(); ?>
 	
-	<?php dynamic_sidebar( 'sidebar-top' ); ?>
+	<?php dynamic_sidebar( 'sidebar-bottom' ); ?>
 	
 	<?php or_below_sidebar(); ?>
 	
