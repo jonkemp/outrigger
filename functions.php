@@ -329,7 +329,7 @@ function or_widgets_init() {
 		'name' => __( 'Sidebar Top' ),
 		'description' => __( 'The first sidebar widget area' ),
 		'before_widget' => '<div class="widget">',
-		'after_widget' => '</div',
+		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
