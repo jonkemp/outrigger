@@ -162,7 +162,9 @@ var wpArchives = <?php echo json_encode(or_get_archives()); ?>;
             </ol>
           </div>
 <script>
+/*
 var wpBookmarks = <?php wp_nav_menu(array('menu'=>'Project Nav','echo'=>true)); ?>;
+*/
 </script>
 
         </div><!-- /.blog-sidebar -->
