@@ -23,117 +23,17 @@
   <body>
     <div class="blog-masthead">
       <div id="topnav" class="container"></div>
-<script>
-var wpPages = <?php echo json_encode(get_pages(array('number' => 10))); ?>;
-</script>
     </div>
 
     <div class="container">
 
       <div id="header" class="blog-header"></div>
-<script>
-var wpHeader = {
-  "name": "<?php bloginfo('name'); ?>",
-  "description": "<?php bloginfo('description'); ?>",
-  "url": "<?php bloginfo('url'); ?>"
-};
-</script>
 
       <div class="row">
 
         <div class="col-sm-8 blog-main">
           <div id="content"></div>
 
-<script>
-var wpPosts = [
-<?php while (have_posts()) : the_post(); ?>
-{
-    "id": <?php the_ID(); ?>,
-    "date": "<?php the_time('F jS, Y'); ?>",
-    "date_gmt": "2016-05-18T20:39:10",
-    "guid": {
-      "rendered": "<?php the_guid(); ?>"
-    },
-    "modified": "2016-05-18T20:39:10",
-    "modified_gmt": "2016-05-18T20:39:10",
-    "slug": "hello-world",
-    "type": "post",
-    "link": "<?php the_permalink(); ?>",
-    "title": {
-      "rendered": "<?php the_title(); ?>"
-    },
-    "content": {
-      "rendered": <?php echo json_encode(get_the_content()); ?>
-    },
-    "excerpt": {
-      "rendered": "<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>\n"
-    },
-    "author": "<?php the_author(); ?>",
-    "featured_media": 0,
-    "comment_status": "open",
-    "ping_status": "open",
-    "sticky": false,
-    "format": "standard",
-    "categories": [
-      1
-    ],
-    "tags": [],
-    "_links": {
-      "self": [
-        {
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/posts/1"
-        }
-      ],
-      "collection": [
-        {
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/posts"
-        }
-      ],
-      "about": [
-        {
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/types/post"
-        }
-      ],
-      "author": [
-        {
-          "embeddable": true,
-          "href": "<?php the_author_link(); ?>"
-        }
-      ],
-      "replies": [
-        {
-          "embeddable": true,
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/comments?post=1"
-        }
-      ],
-      "version-history": [
-        {
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/posts/1/revisions"
-        }
-      ],
-      "wp:attachment": [
-        {
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/media?parent=1"
-        }
-      ],
-      "wp:term": [
-        {
-          "taxonomy": "category",
-          "embeddable": true,
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/categories?post=1"
-        },
-        {
-          "taxonomy": "post_tag",
-          "embeddable": true,
-          "href": "http://localhost:8888/wordpress/wp-json/wp/v2/tags?post=1"
-        }
-      ],
-    }
-  }<?php if (($wp_query->current_post +1) != ($wp_query->post_count)) : ?>,
-  <?php endif; ?>
-	<?php endwhile; ?>
-];
-</script>
           <nav>
             <ul class="pager">
               <li><a href="#">Previous</a></li>
@@ -143,16 +43,27 @@ var wpPosts = [
         </div>
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <!-- <div class="sidebar-module sidebar-module-inset">
+          <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div> -->
-
-          <div id="archives" class="sidebar-module"></div>
-<script>
-var wpArchives = <?php echo json_encode(or_get_archives()); ?>;
-</script>
-
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
           <div class="sidebar-module">
             <h4>Elsewhere</h4>
             <ol class="list-unstyled">
@@ -161,10 +72,6 @@ var wpArchives = <?php echo json_encode(or_get_archives()); ?>;
               <li><a href="#">Facebook</a></li>
             </ol>
           </div>
-<script>
-var wpBookmarks = <?php wp_nav_menu(array('menu'=>'Project Nav','echo'=>true)); ?>;
-</script>
-
         </div><!-- /.blog-sidebar -->
       </div>
     </div>
@@ -186,10 +93,9 @@ var wpBookmarks = <?php wp_nav_menu(array('menu'=>'Project Nav','echo'=>true)); 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-    <!-- <script src="/wordpress/wp-content/themes/outrigger/js/main.js"></script> -->
+    <script src="/wordpress/wp-content/themes/outrigger/js/main.js"></script>
     <script type="text/babel" src="/wordpress/wp-content/themes/outrigger/js/header.js"></script>
     <script type="text/babel" src="/wordpress/wp-content/themes/outrigger/js/posts.js"></script>
     <script type="text/babel" src="/wordpress/wp-content/themes/outrigger/js/pages.js"></script>
-    <script type="text/babel" src="/wordpress/wp-content/themes/outrigger/js/archives.js"></script>
   </body>
 </html>
